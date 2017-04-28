@@ -1,10 +1,3 @@
-/*
- * Main.java
- *
- * created at Apr 24, 2017 by iv.ivanov <iv.ivanov@seeburger.de>
- *
- * Copyright (c) SEEBURGER AG, Germany. All Rights Reserved.
- */
 package asdasd;
 
 import java.io.BufferedReader;
