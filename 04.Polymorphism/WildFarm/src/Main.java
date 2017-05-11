@@ -1,8 +1,14 @@
+//package animals;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
 
 import animals.Animal;
 import animals.Cat;
@@ -15,72 +21,106 @@ import foods.Vegetable;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException 
+	public static void main(String[] args) throws IOException
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String line = br.readLine();
-		List<Animal> newAnimal = new ArrayList<>();
-		List<Food> food = new ArrayList<>();
-		
+		String line = "";
+ /*
+		FileReader fr = new FileReader("input.txt");
+		BufferedReader bf = new BufferedReader(fr);
+		String line = null;
+*/
+		//List<Animal> newAnimalList = new ArrayList<>();
+		//List<Food> foodList = new ArrayList<>();
+		//Map<Animal, Food> animalsMap = new TreeMap<Animal, Food>();
+
 		int countRolls = 0;
-		//while (!"End".equals(line)) 
-		while(!line.equals("End"))
+		Animal animal = null;
+		Food food = null;
+		
+		while((line = br.readLine()) != null &&  !line.equals("End"))
 		{
-			
 				countRolls++;
 				if(countRolls % 2 != 0)
 				{
 					//  checks if odd!
-					String[] animalProp = line.split("\\s+"); 
+					String[] animalProp = line.split("\\s+");
+					System.out.println(animalProp.length);
+					System.out.println(animalProp[0]);
 					String type = animalProp[0];
 					String animalName = animalProp[1];
 					Double animalWeight = Double.parseDouble(animalProp[2]);
 					String livingRegion = animalProp[3];
-			
-					switch (type) 
+
+					switch (type)
 					{
-					case "Cat": 
+					case "Cat":
 						String catBreed = animalProp[4];
-						newAnimal.add(new Cat(animalName, type, animalWeight, livingRegion, catBreed));
+						//newAnimalList.add(new Cat(animalName, type, animalWeight, livingRegion, catBreed));
+						animal = new Cat(animalName, type, animalWeight, livingRegion, catBreed);
 						break;
 					case "Mouse":
-						newAnimal.add(new Mouse(animalName, type, animalWeight, livingRegion));
+						//newAnimalList.add(new Mouse(animalName, type, animalWeight, livingRegion));
+						animal = new Mouse(animalName, type, animalWeight, livingRegion);
 						break;
 					case "Zebra":
-						newAnimal.add(new Zebra(animalName, type, animalWeight, livingRegion));
+						//newAnimalList.add(new Zebra(animalName, type, animalWeight, livingRegion));
+						animal = new Zebra(animalName, type, animalWeight, livingRegion);
+						break;
 					case "Tiger":
-						newAnimal.add(new Tiger(animalName, type, animalWeight, livingRegion));
+						//newAnimalList.add(new Tiger(animalName, type, animalWeight, livingRegion));
+						animal = new Tiger(animalName, type, animalWeight, livingRegion);
+						break;
 					default:
 						System.out.println("The input must be an animal");
 					}
-				} 
+				}
 				else
 				{
 					//checks if even
 					String[] foodData = line.split("\\s+");
 					String foodType = foodData[0];
 					int quantity = Integer.parseInt(foodData[1]);
-					
-					switch (foodType) 
+
+					switch (foodType)
 					{
 					case "Vegetable":
-						food.add(new Vegetable(quantity));
+						food = new Vegetable(quantity);
 						break;
 					case "Meat":
-						food.add(new Meat(quantity));
+						food = new Meat(quantity);
+						break;
 					default:
 						System.out.println("This is not a food!");
 					}
 				}
-				
-				((Animal) newAnimal).makeSound();
-			((Animal) newAnimal).eatFood((Food) food);
-			System.out.println(newAnimal);
 
-			
-		
+				//animalsMap.put(animal, food);
 		}
-		
+		animal.makeSound();
+		animal.eatFood(food);
+		System.out.println(animal);
+//		for (Animal animal : animalsMap)
+//		{
+//
+//			animal.makeSound();
+//
+//			Food food = (Food) foodList.get(0);
+//
+//			animal.eatFood(food);
+//
+//			System.out.println(animal);
+//		}
+//
+//		for(Map.Entry<Animal, Food> animalsMap.)
+//
+//	
+//
+//		if (bf != null)
+//		{
+//		bf.close();
+//		}
+
 	}
 
 }
